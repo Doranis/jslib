@@ -17,6 +17,9 @@
      * @param opt Options
      */
     $.doranis.ensure = function(f, v, opt){
-        //$.getScript('https://cdn.rawgit.com/Doranis/jslib/master/jquery.doranis.geo.js');
+        opt = $.extend({success: function(){}, fail: function(){}}, opt);
+        $.getScript('https://cdn.rawgit.com/Doranis/jslib/master/geo/'+v+'/jquery.doranis.'+f+'.js')
+            .done(opt.success)
+            .fail(opt.fail);
     }
 })(jQuery);
