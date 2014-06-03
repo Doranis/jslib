@@ -48,8 +48,8 @@
         opts = $.extend({success: function(data){}, decline: function(error){}}, opts);
 
         $.doranis.geo.locate({process: function(data){
-            $.doranis.geo.latlng2detail(data, function(){
-                console.log(data);
+            $.doranis.geo.latlng2detail(data, function(info){
+                console.log(info);
             });
         }, decline: opts.decline});
     }
