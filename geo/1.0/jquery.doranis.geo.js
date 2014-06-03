@@ -43,6 +43,7 @@
 
     /**
      * Detect user location and return simplified address object
+     * @param opts Callbacks
      */
     $.doranis.geo.detect = function(opts){
         opts = $.extend({success: function(data){}, decline: function(error){}}, opts);
