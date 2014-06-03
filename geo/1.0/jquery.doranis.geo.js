@@ -11,7 +11,10 @@
         return navigator.geolocation ? true : false;
     }
 
-    $.doranis.geo.detectGeoLocation = function(opt){
-        //$.extend({on}, opt);
+    $.doranis.geo.detect = function(opts){
+        opts = $.extend({process: function(data){}, decline: function(error){}}, opt);
+        if(!$.doranis.geo.isSupported()) $opts.decline('geolocation is not supported by your browser, please update your browser now!');
+        else
+            navigator.geolocation.getCurrentPosition(opts.process, opts.decline);
     }
 })(jQuery);
