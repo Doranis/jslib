@@ -12,7 +12,7 @@
     }
 
     $.doranis.geo.detect = function(opts){
-        opts = $.extend({process: function(data){}, decline: function(error){}}, opt);
+        opts = $.extend({process: function(data){}, decline: function(error){}}, opts);
         if(!$.doranis.geo.isSupported()) $opts.decline('geolocation is not supported by your browser, please update your browser now!');
         else
             navigator.geolocation.getCurrentPosition(opts.process, opts.decline);
