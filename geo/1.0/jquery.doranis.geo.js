@@ -56,10 +56,9 @@
                     var t = result.types[0];
                     geo[t] = {}
                     geo[t]['address'] = result.formatted_address;
-                    
                     for(var ii = 0 ; ii < result.address_components.length; ii++){
                         ac = result.address_components[ii];
-                        geo[ac.types[0]] = ac.long_name;
+                        geo[t][ac.types[0]] = ac.long_name;
                     }
                 }
 
