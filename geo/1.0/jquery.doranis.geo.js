@@ -13,7 +13,7 @@
 
     /**
      * Locate user by getting latitude and longitude
-     * @param opts Event Functions
+     * @param opts Callbacks
      */
     $.doranis.geo.locate = function(opts){
         opts = $.extend({process: function(data){}, decline: function(error){}}, opts);
@@ -22,9 +22,35 @@
             navigator.geolocation.getCurrentPosition(opts.process, opts.decline);
     }
 
-    $.doranis.geo.fetchInfo = function(data, success){
-        $.getJSON('http://maps.google.com/maps/api/geocode/json?latlng='+data.coords.latitude+','+data.coords.longitude+'&sensor=false', function(detail){
+    /**
+     * Convert Latitude and longitude into address detail
+     * @param lat Latitude (or locate result)
+     * @param lng Longitude (omit if locate result set for lat)
+     * @param success callback(detail)
+     */
+    $.doranis.geo.latlng2detail = function(lat, lng, success){
+        // Convert $.doranis.geo.locate result into lat, lng
+        if(isNaN(success) && lat.coords){
+            success = lng;
+            lng = lat.coords.longitude;
+            lat = lat.coords.latitude;
+        }
+
+        $.getJSON('http://maps.google.com/maps/api/geocode/json?latlng='+lat+','+lng+'&sensor=false', function(detail){
             success(detail);
         });
+    }
+
+    /**
+     * Detect user location and return simplified address object
+     */
+    $.doranis.geo.detect = function(opts){
+        opts = $.extend({success: function(data){}, decline: function(error){}}, opts);
+
+        $.doranis.geo.locate({process: function(data){
+            $.doranis.geo.latlng2detail(data, function(){
+                console.log(data);
+            });
+        }, decline: opts.decline});
     }
 })(jQuery);
