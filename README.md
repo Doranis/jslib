@@ -1,7 +1,7 @@
 jslib
 =====
 
-Javascript Library
+Doranis Javascript Library
 
 to begin include following script into your page:
 <code>
