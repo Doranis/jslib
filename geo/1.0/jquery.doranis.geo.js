@@ -49,7 +49,17 @@
 
         $.doranis.geo.locate({process: function(data){
             $.doranis.geo.latlng2detail(data, function(info){
-                console.log(info);
+                var geo = {}
+                for(result in info.results){
+                    var t = result.types[0];
+                    geo[t] = {}
+                    geo[t]['address'] = result.formatted_address;
+                    for(ac in result.address_components){
+                        geo[ac.types[0]] = ac.long_name;
+                    }
+                }
+
+                opts.success(geo);
             });
         }, decline: opts.decline});
     }
