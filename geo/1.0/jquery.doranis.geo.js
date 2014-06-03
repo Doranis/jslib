@@ -51,12 +51,13 @@
         $.doranis.geo.locate({process: function(data){
             $.doranis.geo.latlng2detail(data, function(info){
                 var geo = {}
-                for(result in info.results){
-                    console.log(result);
+                for(var i =0; i < info.results.length; i++){
+                    result = info.results[i];
                     var t = result.types[0];
                     geo[t] = {}
                     geo[t]['address'] = result.formatted_address;
-                    for(ac in result.address_components){
+                    for(var ii = 0 ; ii < result.address_components.length; ii++){
+                        ac = result.address_components[ii];
                         geo[ac.types[0]] = ac.long_name;
                     }
                 }
