@@ -52,6 +52,7 @@
             $.doranis.geo.latlng2detail(data, function(info){
                 var geo = {}
                 for(result in info.results){
+
                     console.log(result);
                     var t = result.types[0];
                     geo[t] = {}
