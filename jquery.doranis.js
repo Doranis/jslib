@@ -18,7 +18,7 @@
      */
     $.doranis.ensure = function(f, v, opt){
         opt = $.extend({success: function(){}, fail: function(){}}, opt);
-        $.getScript('https://cdn.rawgit.com/Doranis/jslib/master/geo/'+v+'/jquery.doranis.'+f+'.js')
+        $.getScript('https://rawgit.com/Doranis/jslib/master/geo/'+v+'/jquery.doranis.'+f+'.js')
             .done(opt.success)
             .fail(opt.fail);
     }
