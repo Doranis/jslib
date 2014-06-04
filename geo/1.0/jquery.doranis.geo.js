@@ -51,6 +51,7 @@
         $.doranis.geo.locate({process: function(data){
             $.doranis.geo.latlng2detail(data, function(info){
                 var geo = {}
+                geo.coords = data.coords;
                 for(var i =0; i < info.results.length; i++){
                     result = info.results[i];
                     var t = result.types[0];
