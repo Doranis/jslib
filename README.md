@@ -18,3 +18,4 @@ Available Libraries
 ===================
 
 - geo
+- preloader
