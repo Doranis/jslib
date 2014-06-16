@@ -18,7 +18,7 @@
      * @param opt Options
      */
     $.doranis.ensure = function(f, v, opt){
-        opt = $.extend({success: function(){}, fail: function(){}, complete: function(){}}, opt);
+        opt = $.extend({success: function(){}, fail: function(){}, complete: function(){}}, f == typeof object ? v : opt);
         $.doranis.loader.total = 1;
         $.doranis.loader.loaded = 0;
 
