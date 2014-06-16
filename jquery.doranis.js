@@ -9,6 +9,7 @@
      * initiating doranis class
      */
     $.doranis = {}
+    $.doranis.loader = {loaded: 0, total: 0}
 
     /**
      * Doranis Library Loader
@@ -17,9 +18,29 @@
      * @param opt Options
      */
     $.doranis.ensure = function(f, v, opt){
-        opt = $.extend({success: function(){}, fail: function(){}}, opt);
-        $.getScript('https://rawgit.com/Doranis/jslib/master/geo/'+v+'/jquery.doranis.'+f+'.js')
-            .done(opt.success)
-            .fail(opt.fail);
+        opt = $.extend({success: function(){}, fail: function(){}, complete: function(){}}, opt);
+        $.doranis.loader.total = 1;
+        $.doranis.loader.loaded = 0;
+
+        if('object' == typeof f){
+            $.doranis.loader.total = f.length;
+            $.each(f, function(index, el){
+                $.getScript('https://rawgit.com/Doranis/jslib/master/geo/'+el.version+'/jquery.doranis.'+el.file+'.js')
+                    .done(function(){
+                        $.doranis.loader.loaded++;
+                        if($.doranis.loader.loaded >= $.doranis.loader.total) opt.complete();
+                        opt.success(el);
+                    })
+                    .fail(function(){
+                        $.doranis.loader.loaded++;
+                        if($.doranis.loader.loaded >= $.doranis.loader.total) opt.complete();
+                        opt.fail(el);
+                    });
+            });
+        }
+        else
+            $.getScript('https://rawgit.com/Doranis/jslib/master/geo/'+v+'/jquery.doranis.'+f+'.js')
+                .done(opt.success)
+                .fail(opt.fail);
     }
 })(jQuery);
