@@ -40,7 +40,7 @@
                     opts.progress({title: title, total: opts.collection.length, loaded: loaded.length, percentage: (100/opts.collection.length) * loaded.length, url: url, object: img_obj});
 
                 if (loaded.length>=opts.collection.length)
-                    opts.progress({loaded: loaded});
+                    opts.complete({loaded: loaded});
 
                 $(this).unbind('load error');
             });
