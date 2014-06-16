@@ -25,7 +25,7 @@
         if('object' == typeof f){
             $.doranis.loader.total = f.length;
             $.each(f, function(index, el){
-                $.getScript('https://rawgit.com/Doranis/jslib/master/geo/'+el.version+'/jquery.doranis.'+el.file+'.js')
+                $.getScript('https://rawgit.com/Doranis/jslib/master/'+el.file+'/'+el.version+'/jquery.doranis.'+el.file+'.js')
                     .done(function(){
                         $.doranis.loader.loaded++;
                         if($.doranis.loader.loaded >= $.doranis.loader.total) opt.complete();
@@ -39,7 +39,7 @@
             });
         }
         else
-            $.getScript('https://rawgit.com/Doranis/jslib/master/geo/'+v+'/jquery.doranis.'+f+'.js')
+            $.getScript('https://rawgit.com/Doranis/jslib/master/'+f+'/'+v+'/jquery.doranis.'+f+'.js')
                 .done(opt.success)
                 .fail(opt.fail);
     }
