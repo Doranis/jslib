@@ -5,7 +5,7 @@ Doranis Javascript Library
 
 to begin include following script into your page:
 <code>
-  https://cdn.rawgit.com/Doranis/jslib/master/jquery.doranis.js
+  https://cdn.jsdelivr.net/gh/Doranis/jslib/jquery.doranis.js
 </code>
 
 then you can load libraries using following command:
